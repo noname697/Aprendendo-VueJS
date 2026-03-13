@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div class="todos-item" v-for="(obj, index) in todos" v-bind:key="obj.id">
+    <div class="todos-item" v-for="(obj, index) in todos" :key="obj.id">
+      <img v-if="obj.imgSrc" :src="obj.imgSrc" />
       {{ index + 1 }} - {{ obj.title }}
     </div>
   </div>
@@ -17,13 +18,15 @@ export default {
           "userId": 1,
           "id": 1,
           "title": "delectus aut autem",
-          "completed": false
+          "completed": false,
+          "imgSrc": "https://github.com/noname697.png",
         },
         {
           "userId": 1,
           "id": 2,
           "title": "quis ut nam facilis et officia qui",
-          "completed": false
+          "completed": false,
+          "imgSrc": "https://github.com/noname697.png",
         },
         {
           "userId": 1,
