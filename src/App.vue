@@ -1,19 +1,25 @@
 <template>
   <div>
-    <button @click.once="onClick">Enviar</button>
+    {{ fullName }} <br><br>
 
-    <br><br>
+    <h2>ToDo's em aberto</h2>
+    <div v-for="i in uncompletedTodos" :key="i.id">
+      {{ i.title }}
 
-    <div @mouseover="onMouseOver" @mouseout="onMouseOut">
-      Mouse Over
+    </div>
+    <h2>ToDo's Completadas</h2>
+    <div v-for="i in completedTodos" :key="i.id">
+      {{ i.title }}
+
+    </div>
+    <br><br><br>
+    <h2>Todas as ToDo's</h2>
+    <div v-for="i in todos" :key="i.id">
+      <input type="checkbox" v-model="i.completed" />
+      {{ i.title }}
+
     </div>
 
-    <br><br>
-
-    <form action="https://google.com" @submit.prevent="onSubmit">
-      <input type="text" @keyup="onKeyUp"/>
-      <button type="submit">Enviar</button>
-    </form>
   </div>
 </template>
 
@@ -22,25 +28,61 @@ export default {
   name: 'App',
   data() {
     return {
+      user: {
+        firstName: 'John',
+        lastName: 'Snow'
+      },
+      todos: [
+        {
+          "userId": 1,
+          "id": 1,
+          "title": "delectus aut autem",
+          "completed": false
+        },
+        {
+          "userId": 1,
+          "id": 2,
+          "title": "quis ut nam facilis et officia qui",
+          "completed": false
+        },
+        {
+          "userId": 1,
+          "id": 3,
+          "title": "fugiat veniam minus",
+          "completed": false
+        },
+        {
+          "userId": 1,
+          "id": 4,
+          "title": "et porro tempora",
+          "completed": true
+        },
+        {
+          "userId": 1,
+          "id": 5,
+          "title": "laboriosam mollitia et enim quasi adipisci quia provident illum",
+          "completed": false
+        }
+      ]
     }
   },
-  methods: {
-    onClick(e) {
-      console.log("enviado", e)
+
+  computed: {
+    fullName() {
+      return `${this.user.firstName} ${this.user.lastName}`
     },
 
-    onMouseOver(e) {
-      console.log("Mouse over", e)
+    uncompletedTodos() {
+      return this.todos.filter(todo => !todo.completed)
     },
-    onMouseOut(e) {
-      console.log("Mouse Out", e)
-    },
-    onKeyUp(e){
-      console.log(e.target.value)
-    },
-    onSubmit(e) {
-      console.log("Form enviado", e)
+
+    completedTodos() {
+      return this.todos.filter(todo => todo.completed)
     }
+  },
+
+  methods: {
+
   }
 }
 </script>
