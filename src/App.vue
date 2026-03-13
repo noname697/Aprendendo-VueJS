@@ -1,63 +1,19 @@
 <template>
   <div>
-    <div>
-      One Way Data Binding <br />
-      Two Way Data Binding <br />
-      v-model -> Formularios
-    </div>
+    <button @click.once="onClick">Enviar</button>
 
-    <br /><br />
+    <br><br>
 
-    <div>
-      <label>Nome</label><br />
-      <input v-model="name" type="text" /><br />
-      {{ name }}
+    <div @mouseover="onMouseOver" @mouseout="onMouseOut">
+      Mouse Over
     </div>
 
     <br><br>
 
-    <div>
-      <label>Esportes</label><br>
-      <select v-model="sports">
-        <option value="">Escolha</option>
-        <option value="futebol">Futebol</option>
-        <option value="skate">Skate</option>
-        <option value="tênis">Tênis</option>
-      </select>
-      <br>
-      {{ sports }}
-    </div>
-
-    <br><br>
-
-    <div>
-      <label>NewsLetter</label> <br>
-      <input v-model="newsletter" type="radio" value="Sim"> Sim <br>
-      <input v-model="newsletter" type="radio" value="Não"> Não
-      <br>
-      {{ newsletter }}
-    </div>
-
-    <br><br>
-
-    <div>
-      <label>Contrato</label> <br>
-      <input v-model="contract" type="checkbox" value="Sim"> Aceita nossos termos? <br>
-      <br>
-      {{ contract }}
-    </div>
-
-    <br><br>
-
-    <div>
-      <label>Marque as cores que você mais gosta: </label> <br>
-      <input v-model="colors" type="checkbox" value="azul"> Azul <br>
-      <input v-model="colors" type="checkbox" value="amarelo"> Amarelo <br>
-      <input v-model="colors" type="checkbox" value="vermelho"> vermelho
-      <br>
-      {{colors}}
-    </div>
-
+    <form action="https://google.com" @submit.prevent="onSubmit">
+      <input type="text" @keyup="onKeyUp"/>
+      <button type="submit">Enviar</button>
+    </form>
   </div>
 </template>
 
@@ -66,11 +22,24 @@ export default {
   name: 'App',
   data() {
     return {
-      name: 'jon Snow',
-      sports: '',
-      newsletter: '',
-      contract: false,
-      colors: []
+    }
+  },
+  methods: {
+    onClick(e) {
+      console.log("enviado", e)
+    },
+
+    onMouseOver(e) {
+      console.log("Mouse over", e)
+    },
+    onMouseOut(e) {
+      console.log("Mouse Out", e)
+    },
+    onKeyUp(e){
+      console.log(e.target.value)
+    },
+    onSubmit(e) {
+      console.log("Form enviado", e)
     }
   }
 }
