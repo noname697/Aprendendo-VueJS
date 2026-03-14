@@ -1,11 +1,15 @@
 <template>
   <div>
-    <TheHeader v-if="showHeader" />
-    <h1>Lifecycle Hooks</h1>
-    <br>
-    <input v-model="name" type="text">
-    {{ name }} <br>
-    <button @click="showHeader = !showHeader">Ativar e desativar Header</button>
+    <TheHeader>
+      <template v-slot:title>
+        Home
+      </template>
+      <template v-slot:description>
+        <p>descrição</p>
+      </template>
+
+      Conteúdo do header ...
+    </TheHeader>
   </div>
 </template>
 
@@ -20,49 +24,23 @@ export default {
   },
   data() {
     return {
-      name: 'Arthur Manenti',
-      showHeader: true
     }
   },
   beforeUpdate() {
-    console.log('beforeUpdate ' + this.name);
-
   },
   updated() {
-    console.log('updated ' + this.name);
-
   },
-  // beforeCreate() {
-  //   console.log('beforeCreate');
-  //   console.log('Estado: ' + this.name);
-  //   console.log('DOM: ' + this.$el);
-  // },
-
-  // created() {
-  //   console.log('created');
-  //   console.log('Estado: ' + this.name);
-  //   console.log('DOM: ' + this.$el);
-  // },
-
-  // beforeMount() {
-  //   console.log('beforeMount');
-  //   console.log('Estado: ' + this.name);
-  //   console.log('DOM: ' + this.$el);
-  // },
-
-
-
-
+  beforeCreate() {
+  },
+  created() {
+  },
+  beforeMount() {
+  },
   watch: {
-
   },
-
   computed: {
-
   },
-
   methods: {
-
   }
 }
 </script>
