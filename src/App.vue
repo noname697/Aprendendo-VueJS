@@ -1,55 +1,60 @@
 <template>
   <div>
-    <input v-model="name" type="text"> <br>
-    {{ name }}
-
-    <br><br>
-
-    <input v-model="user.firstName" type="text"> <br>
-    <input v-model="user.lastName" type="text"> <br>
-    {{ user.firstName }} {{ user.lastName }}
-
-    <br><br><br>
-
-    <select v-model="pageCount">
-      <option value="5">5</option>
-      <option value="10">10</option>
-      <option value="15">15</option>
-    </select> <br>
-    {{ pageCount }}
+    <TheHeader v-if="showHeader" />
+    <h1>Lifecycle Hooks</h1>
+    <br>
+    <input v-model="name" type="text">
+    {{ name }} <br>
+    <button @click="showHeader = !showHeader">Ativar e desativar Header</button>
   </div>
 </template>
 
 <script>
+import TheHeader from './components/TheHeader.vue';
+
+
 export default {
   name: 'App',
+  components: {
+    TheHeader
+  },
   data() {
     return {
-      name: '',
-      pageCount: 5,
-      user: {
-        firstName: 'Arthur',
-        lastName: 'Manenti'
-      }
+      name: 'Arthur Manenti',
+      showHeader: true
     }
   },
+  beforeUpdate() {
+    console.log('beforeUpdate ' + this.name);
+
+  },
+  updated() {
+    console.log('updated ' + this.name);
+
+  },
+  // beforeCreate() {
+  //   console.log('beforeCreate');
+  //   console.log('Estado: ' + this.name);
+  //   console.log('DOM: ' + this.$el);
+  // },
+
+  // created() {
+  //   console.log('created');
+  //   console.log('Estado: ' + this.name);
+  //   console.log('DOM: ' + this.$el);
+  // },
+
+  // beforeMount() {
+  //   console.log('beforeMount');
+  //   console.log('Estado: ' + this.name);
+  //   console.log('DOM: ' + this.$el);
+  // },
+
+
+
 
   watch: {
-    name(newValue) {
-      if (newValue.length >= 3) {
-        this.saveUserName()
-      }
-    },
-    pageCount() {
-      this.changePage()
-    },
-    user: {
-      handler(){
-        console.log("User Changed")
-      },
-      deep: true
 
-    }
   },
 
   computed: {
@@ -57,12 +62,7 @@ export default {
   },
 
   methods: {
-    saveUserName() {
-      console.log(this.name);
-    },
-    changePage() {
-      console.log("Ajax changePage");
-    }
+
   }
 }
 </script>
