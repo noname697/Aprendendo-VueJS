@@ -1,6 +1,6 @@
 <template>
   <div>
-    <BaseAlert :variant="variant">
+    <BaseAlert v-if="showAlert" :variant="variant" @close="onClose">
       {{ text }}
     </BaseAlert>
   </div>
@@ -18,7 +18,8 @@ export default {
   },
   data() {
     return {
-      variant: "danger",
+      showAlert: true,
+      variant: "success",
       text: "Seu formulário foi enviado!"
     }
   },
@@ -37,6 +38,9 @@ export default {
   computed: {
   },
   methods: {
+    onClose() {
+      this.showAlert = false
+    }
   }
 }
 </script>
