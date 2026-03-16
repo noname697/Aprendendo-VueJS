@@ -2,6 +2,7 @@
   <nav>
     <RouterLink to="/">Home</RouterLink> |
     <RouterLink :to="rotaDinamica">Serviços</RouterLink> |
+    <RouterLink to="/usuarios/10">Usuario</RouterLink> |
     <RouterLink to="/about">About</RouterLink>
   </nav>
   <RouterView />
