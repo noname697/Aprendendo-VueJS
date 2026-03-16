@@ -1,45 +1,19 @@
 <template>
-  <div>
-    <BaseAlert v-if="showAlert" :variant="variant" @close="onClose">
-      {{ text }}
-    </BaseAlert>
-  </div>
+  <nav>
+    <RouterLink to="/">Home</RouterLink> |
+    <RouterLink :to="rotaDinamica">Serviços</RouterLink> |
+    <RouterLink to="/about">About</RouterLink>
+  </nav>
+  <RouterView />
 </template>
 
 <script>
-import BaseAlert from '@/components/BaseAlert.vue';
-
-
-
 export default {
-  name: 'App',
-  components: {
-    BaseAlert
-  },
   data() {
     return {
-      showAlert: true,
-      variant: "success",
-      text: "Seu formulário foi enviado!"
-    }
-  },
-  beforeUpdate() {
-  },
-  updated() {
-  },
-  beforeCreate() {
-  },
-  created() {
-  },
-  beforeMount() {
-  },
-  watch: {
-  },
-  computed: {
-  },
-  methods: {
-    onClose() {
-      this.showAlert = false
+      rotaDinamica: {
+        name: "servicos"
+      }
     }
   }
 }
@@ -50,7 +24,20 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-align: center;
   color: #2c3e50;
-  margin: 60px;
+}
+
+nav {
+  padding: 30px;
+}
+
+nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>
