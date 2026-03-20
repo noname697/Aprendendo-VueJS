@@ -1,16 +1,17 @@
 <template>
-  <img alt="vue logo" src="@/assets/logo.png">
+  <AppProducts />
+  <br>
   <button @click="updateUser">Atualizar Perfil</button>
-  <HelloWorld msg="Welcome" />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+import AppProducts from './components/Products/AppProducts.vue';
+
 
 export default {
   name: "App",
   components: {
-    HelloWorld
+    AppProducts
   },
   data() {
     return {
