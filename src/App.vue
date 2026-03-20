@@ -1,6 +1,7 @@
 <template>
   <AppProduct />
-  <img src="@/assets/logo.png" alt="" />
+  {{ name }}
+  <img @click="changeName" src="@/assets/logo.png" alt="" />
   <HelloWorld />
 </template>
 
@@ -8,7 +9,6 @@
 <script>
 import HelloWorld from '@/components/HelloWorld.vue';
 import AppProduct from '@/components/Products/AppProduct.vue';
-import CalculateDiscountMixin from '@/components/Products/CalculateDiscountMixin.vue';
 
 export default {
   name: "App",
@@ -16,13 +16,16 @@ export default {
     HelloWorld,
     AppProduct
   },
-  data() {
-    return {
+  setup() {
+    let name = "Arthur"
+
+    const changeName = () => {
+      name = "João"
     }
-  },
-  mixins: [CalculateDiscountMixin],
-  created(){
-    this.calculateDiscount()
+    return {
+      name,
+      changeName
+    }
   }
 
 }
