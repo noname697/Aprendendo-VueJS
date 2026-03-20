@@ -1,6 +1,12 @@
 <template>
-  <AppProduct />
-  {{ name }}
+  {{ name }} <br><br>
+  <h5>User</h5>
+  {{ user.firstName }}
+  {{ user.lastName }}
+  <br><br>
+  <h5>Admin</h5>
+  {{ admin.firstName }} {{ admin.lastName }}
+  <br><br>
   <img @click="changeName" src="@/assets/logo.png" alt="" />
   <HelloWorld />
 </template>
@@ -8,21 +14,37 @@
 
 <script>
 import HelloWorld from '@/components/HelloWorld.vue';
-import AppProduct from '@/components/Products/AppProduct.vue';
+import { reactive, ref } from 'vue';
 
 export default {
   name: "App",
   components: {
     HelloWorld,
-    AppProduct
   },
   setup() {
+    const user = reactive({
+      firstName: "Arthur",
+      lastName: "Manenti"
+    })
+
+    const admin = ref({
+      firstName: "Master",
+      lastName: "Manenti"
+    })
+
+    const count = ref('test')
+    console.log(count)
+
     let name = "Arthur"
 
     const changeName = () => {
-      name = "João"
+      name = "Jon Snow"
+      user.firstName = "Sansa"
+      admin.value.firstName = "Prime"
     }
     return {
+      admin,
+      user,
       name,
       changeName
     }
@@ -36,7 +58,6 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
 }
 
