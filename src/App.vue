@@ -1,22 +1,21 @@
 <template>
-  <nav>
-    <RouterLink to="/">Home</RouterLink> |
-    <RouterLink :to="rotaDinamica">Serviços</RouterLink> |
-    <RouterLink to="/usuarios/10">Usuario</RouterLink> |
-    <RouterLink to="/about">About</RouterLink>
-  </nav>
-  <RouterView />
+  <img alt="vue logo" src="@/assets/logo.png">
+  <HelloWorld msg="Welcome" />
 </template>
 
 <script>
+import HelloWorld from './components/HelloWorld.vue';
+
 export default {
+  name: "App",
+  components: {
+    HelloWorld
+  },
   data() {
     return {
-      rotaDinamica: {
-        name: "servicos"
-      }
     }
-  }
+  },
+
 }
 </script>
 
