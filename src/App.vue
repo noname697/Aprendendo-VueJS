@@ -1,42 +1,30 @@
 <template>
-  <AppProducts />
-  <br>
-  {{ $store.getters.total }}
-  <br><br>
-  {{ $store.state.user.firstName }} {{ $store.state.user.lastName }}
-  <br><br>
-  <button @click="updateUser">Atualizar Perfil</button>
+  <AppProduct />
+  <img src="@/assets/logo.png" alt="" />
+  <HelloWorld />
 </template>
 
 
 <script>
-import AppProducts from './components/Products/AppProducts.vue';
-
+import HelloWorld from '@/components/HelloWorld.vue';
+import AppProduct from '@/components/Products/AppProduct.vue';
+import CalculateDiscountMixin from '@/components/Products/CalculateDiscountMixin.vue';
 
 export default {
   name: "App",
   components: {
-    AppProducts
+    HelloWorld,
+    AppProduct
   },
   data() {
     return {
-
     }
   },
-  methods: {
-    updateUser() {
-      const newUser = {
-        firstName: "Arthur",
-        lastName: "Manenti",
-        email: "arthur@arthur.com",
-      }
-      // this.$store.commit("storeUser", newUser)
-      this.$store.dispatch("storeUser", newUser).then(() => {
-        console.log("Terminou...");
-
-      })
-    }
+  mixins: [CalculateDiscountMixin],
+  created(){
+    this.calculateDiscount()
   }
+
 }
 </script>
 
@@ -45,6 +33,7 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-align: center;
   color: #2c3e50;
 }
 

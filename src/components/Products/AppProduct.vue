@@ -1,38 +1,11 @@
 <template>
-    <div class="card">
-        {{ product.name }} - {{ product.price }} <br>
-        <button @click="addProduct">Adicionar</button>
-        <button @click="removeProduct" v-if="inCart">Remover</button>
-    </div>
+    <div>Produto</div>
 </template>
 
 <script>
 export default {
-    props: {
-        product: Object
-    },
-    methods: {
-        addProduct() {
-            this.$store.commit("addProduct", this.product)
-        },
-        removeProduct() {
-            this.$store.commit("removeProduct", this.product.id)
-        },
-    },
-    computed: {
-        inCart() {
-            let c = 0
-            this.$store.state.cart.forEach((i) => i.id === this.product.id ? c++ : null)
-            return c > 0
-        }
-    }
+
 }
 </script>
 
-<style scoped>
-.card {
-    background: bisque;
-    padding: 6px;
-    margin-bottom: 5px;
-}
-</style>
+<style scoped></style>
