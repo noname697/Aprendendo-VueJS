@@ -22,10 +22,8 @@ export default {
     computed: {
         inCart() {
             let c = 0
-            this.$store.state.cart.forEach((i) => {
-                if (i.id === this.product.id) c++
-            })
-            return c === 1
+            this.$store.state.cart.forEach((i) => i.id === this.product.id ? c++ : null)
+            return c > 0
         }
     }
 }

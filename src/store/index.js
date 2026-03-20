@@ -38,6 +38,10 @@ export default createStore({
       state.cart.splice(idx, 1);
     },
   },
+  getters: {
+    total(state){
+      return state.cart.reduce((acc, i) => acc += i.price, 0)
+    }
+  },
   actions: {},
-  getters: {},
 });

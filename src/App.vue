@@ -1,8 +1,11 @@
 <template>
   <AppProducts />
   <br>
+  {{$store.getters.total}}
+  <br><br>
   <button @click="updateUser">Atualizar Perfil</button>
 </template>
+
 
 <script>
 import AppProducts from './components/Products/AppProducts.vue';
