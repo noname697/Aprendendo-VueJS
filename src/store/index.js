@@ -27,6 +27,7 @@ export default createStore({
     cart: [],
   },
   mutations: {
+    // Assíncrono
     storeUser(state, data) {
       state.user = data;
     },
@@ -39,9 +40,19 @@ export default createStore({
     },
   },
   getters: {
-    total(state){
-      return state.cart.reduce((acc, i) => acc += i.price, 0)
-    }
+    total(state) {
+      return state.cart.reduce((acc, i) => (acc += i.price), 0);
+    },
   },
-  actions: {},
+  actions: {
+    // Retorna uma promessa
+    storeUser({ commit }, data) {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve();
+          commit("storeUser", data);
+        }, 3000);
+      });
+    },
+  },
 });

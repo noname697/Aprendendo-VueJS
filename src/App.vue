@@ -1,7 +1,9 @@
 <template>
   <AppProducts />
   <br>
-  {{$store.getters.total}}
+  {{ $store.getters.total }}
+  <br><br>
+  {{ $store.state.user.firstName }} {{ $store.state.user.lastName }}
   <br><br>
   <button @click="updateUser">Atualizar Perfil</button>
 </template>
@@ -28,7 +30,11 @@ export default {
         lastName: "Manenti",
         email: "arthur@arthur.com",
       }
-      this.$store.commit("storeUser", newUser)
+      // this.$store.commit("storeUser", newUser)
+      this.$store.dispatch("storeUser", newUser).then(() => {
+        console.log("Terminou...");
+
+      })
     }
   }
 }
