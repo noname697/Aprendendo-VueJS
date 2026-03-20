@@ -1,5 +1,6 @@
 <template>
   <img alt="vue logo" src="@/assets/logo.png">
+  <button @click="updateUser">Atualizar Perfil</button>
   <HelloWorld msg="Welcome" />
 </template>
 
@@ -13,9 +14,19 @@ export default {
   },
   data() {
     return {
+
     }
   },
-
+  methods: {
+    updateUser() {
+      const newUser = {
+        firstName: "Arthur",
+        lastName: "Manenti",
+        email: "arthur@arthur.com",
+      }
+      this.$store.commit("storeUser", newUser)
+    }
+  }
 }
 </script>
 
@@ -24,7 +35,6 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
 }
 

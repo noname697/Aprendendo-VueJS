@@ -1,4 +1,4 @@
-import { createStore } from 'vuex'
+import { createStore } from "vuex";
 
 export default createStore({
   state: {
@@ -11,10 +11,10 @@ export default createStore({
     cart: [],
   },
   mutations: {
-
+    storeUser(state, data) {
+      state.user = data;
+    },
   },
-  actions: {
-  },
-  getters: {
-  },
-})
+  actions: {},
+  getters: {},
+});
