@@ -1,30 +1,32 @@
 <template>
-  {{ name }} <br><br>
   <h5>User</h5>
   {{ user.firstName }}
   {{ user.lastName }}
   <br><br>
-  <h5>Admin</h5>
-  {{ admin.firstName }} {{ admin.lastName }}
-  <br><br>
-  <img @click="changeName" src="@/assets/logo.png" alt="" />
-  <HelloWorld />
+  <h5>Full Name</h5>
+  {{ fullName }}
+  <button @click="user.firstName = 'Optimus Prime'">Atualizar</button>
 </template>
 
 
 <script>
-import HelloWorld from '@/components/HelloWorld.vue';
-import { reactive, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 
 export default {
   name: "App",
-  components: {
-    HelloWorld,
-  },
   setup() {
-    const user = reactive({
+    const user = ref({
       firstName: "Arthur",
       lastName: "Manenti"
+    })
+
+    const fullName = computed(() => `${user.value.firstName} ${user.value.lastName}`)
+
+    watch(user, () => {
+console.log("ngsoingvs");
+
+    }, {
+      deep: true
     })
 
     const admin = ref({
@@ -32,20 +34,19 @@ export default {
       lastName: "Manenti"
     })
 
-    const count = ref('test')
-    console.log(count)
 
     let name = "Arthur"
 
     const changeName = () => {
       name = "Jon Snow"
-      user.firstName = "Sansa"
+      user.value.firstName = "Sansa"
       admin.value.firstName = "Prime"
     }
     return {
       admin,
       user,
       name,
+      fullName,
       changeName
     }
   }
