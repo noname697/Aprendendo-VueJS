@@ -1,56 +1,28 @@
 <template>
-  <h5>User</h5>
-  {{ user.firstName }}
-  {{ user.lastName }}
-  <br><br>
-  <h5>Full Name</h5>
-  {{ fullName }}
-  <button @click="user.firstName = 'Optimus Prime'">Atualizar</button>
+  Hello Vue
+  <AppButton data-vue="Jon" @update="getUpdate">Save
+    <template #icon>Icon</template>
+  </AppButton>
 </template>
 
 
 <script>
-import { computed, ref, watch } from 'vue';
+import AppButton from './components/AppButton.vue';
 
 export default {
   name: "App",
+  components: {
+    AppButton
+  },
   setup() {
-    const user = ref({
-      firstName: "Arthur",
-      lastName: "Manenti"
-    })
-
-    const fullName = computed(() => `${user.value.firstName} ${user.value.lastName}`)
-
-    watch(user, () => {
-console.log("ngsoingvs");
-
-    }, {
-      deep: true
-    })
-
-    const admin = ref({
-      firstName: "Master",
-      lastName: "Manenti"
-    })
-
-
-    let name = "Arthur"
-
-    const changeName = () => {
-      name = "Jon Snow"
-      user.value.firstName = "Sansa"
-      admin.value.firstName = "Prime"
+    const getUpdate = (data) => {
+      console.log('getUpdate: ', data)
     }
+
     return {
-      admin,
-      user,
-      name,
-      fullName,
-      changeName
+      getUpdate
     }
   }
-
 }
 </script>
 
@@ -60,18 +32,5 @@ console.log("ngsoingvs");
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
 }
 </style>
